@@ -1,0 +1,2918 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/18/2026 7:36:16 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-9PJ76I7"
+  DTS:CreatorName="DESKTOP-9PJ76I7\USER"
+  DTS:DTSID="{7A46A2DF-46DB-4598-B4A7-9672F1878B99}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="ETL_AZURE"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{C6AB3477-C15B-4917-B379-C956C5965393}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{76EC9251-8E50-4E84-A617-64432C701FF5}"
+      DTS:ObjectName="LocalHost.DATAMART_NORTHWND 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DATAMART_NORTHWND;Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Application Name=SSIS-ETL_AZURE-{76EC9251-8E50-4E84-A617-64432C701FF5}LocalHost.DATAMART_NORTHWND 1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Flujo de datos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{BBBEA2D7-5B49-4740-B439-B4C4CC6EA06B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Flujo de datos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="AZURE_DIM_Categoria"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Dim_Categoria"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Connections[IDbConnection]"
+                  connectionManagerID="{5C5DE4DA-9CE8-4F9B-B0CC-472F984F1A76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[servidoresteban.database.windows.net.DATAMART_NORTHWND.esteban]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET].Columns[Categoria_SKey]"
+                      cachedDataType="i4"
+                      cachedName="Categoria_SKey"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET].ExternalColumns[Categoria_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].Columns[Categoria_SKey]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET].Columns[Categoria_Codigo]"
+                      cachedDataType="i4"
+                      cachedName="Categoria_Codigo"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET].ExternalColumns[Categoria_Codigo]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].Columns[Categoria_Codigo]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET].Columns[Categoria_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Categoria_Nombre"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET].ExternalColumns[Categoria_Nombre]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].Columns[Categoria_Nombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET].ExternalColumns[Categoria_SKey]"
+                      dataType="i4"
+                      name="Categoria_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET].ExternalColumns[Categoria_Codigo]"
+                      dataType="i4"
+                      name="Categoria_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET].ExternalColumns[Categoria_Nombre]"
+                      dataType="wstr"
+                      length="15"
+                      name="Categoria_Nombre" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="AZURE_DIM_Cliente"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Dim_Cliente"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Connections[IDbConnection]"
+                  connectionManagerID="{5C5DE4DA-9CE8-4F9B-B0CC-472F984F1A76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[servidoresteban.database.windows.net.DATAMART_NORTHWND.esteban]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].Columns[Cliente_SKey]"
+                      cachedDataType="i4"
+                      cachedName="Cliente_SKey"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_SKey]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].Columns[Cliente_Codigo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="Cliente_Codigo"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Codigo]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Codigo]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].Columns[Cliente_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="Cliente_Nombre"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Nombre]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Nombre]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].Columns[Cliente_Compania]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="Cliente_Compania"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Compania]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Compania]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].Columns[Cliente_Direccion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="Cliente_Direccion"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Direccion]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Direccion]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].Columns[Cliente_Ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Cliente_Ciudad"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Ciudad]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Ciudad]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].Columns[Cliente_Region]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="Cliente_Region"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Region]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Region]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].Columns[Cliente_Pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Cliente_Pais"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Pais]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Pais]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_SKey]"
+                      dataType="i4"
+                      name="Cliente_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Codigo]"
+                      dataType="wstr"
+                      length="5"
+                      name="Cliente_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Nombre]"
+                      dataType="wstr"
+                      length="40"
+                      name="Cliente_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Compania]"
+                      dataType="wstr"
+                      length="40"
+                      name="Cliente_Compania" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Direccion]"
+                      dataType="wstr"
+                      length="60"
+                      name="Cliente_Direccion" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Ciudad]"
+                      dataType="wstr"
+                      length="15"
+                      name="Cliente_Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Region]"
+                      dataType="wstr"
+                      length="25"
+                      name="Cliente_Region" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_Pais]"
+                      dataType="wstr"
+                      length="15"
+                      name="Cliente_Pais" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="AZURE_DIM_Empleado"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Dim_Empleado"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Connections[IDbConnection]"
+                  connectionManagerID="{5C5DE4DA-9CE8-4F9B-B0CC-472F984F1A76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[servidoresteban.database.windows.net.DATAMART_NORTHWND.esteban]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].Columns[Empleado_SKey]"
+                      cachedDataType="i4"
+                      cachedName="Empleado_SKey"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_SKey]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].Columns[Empleado_Codigo]"
+                      cachedDataType="i4"
+                      cachedName="Empleado_Codigo"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_Codigo]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Codigo]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].Columns[Empleado_NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="70"
+                      cachedName="Empleado_NombreCompleto"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_NombreCompleto]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_NombreCompleto]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].Columns[Empleado_Direccion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="120"
+                      cachedName="Empleado_Direccion"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_Direccion]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Direccion]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].Columns[Empleado_Ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Empleado_Ciudad"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_Ciudad]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Ciudad]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].Columns[Empleado_Region]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Empleado_Region"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_Region]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Region]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].Columns[Empleado_Pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Empleado_Pais"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_Pais]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Pais]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_SKey]"
+                      dataType="i4"
+                      name="Empleado_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_Codigo]"
+                      dataType="i4"
+                      name="Empleado_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_NombreCompleto]"
+                      dataType="wstr"
+                      length="70"
+                      name="Empleado_NombreCompleto" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_Direccion]"
+                      dataType="wstr"
+                      length="120"
+                      name="Empleado_Direccion" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_Ciudad]"
+                      dataType="wstr"
+                      length="15"
+                      name="Empleado_Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_Region]"
+                      dataType="wstr"
+                      length="15"
+                      name="Empleado_Region" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_Pais]"
+                      dataType="wstr"
+                      length="15"
+                      name="Empleado_Pais" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="AZURE_DIM_Producto"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Dim_Producto"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Connections[IDbConnection]"
+                  connectionManagerID="{5C5DE4DA-9CE8-4F9B-B0CC-472F984F1A76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[servidoresteban.database.windows.net.DATAMART_NORTHWND.esteban]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].Columns[Producto_SKey]"
+                      cachedDataType="i4"
+                      cachedName="Producto_SKey"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_SKey]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].Columns[Producto_Codigo]"
+                      cachedDataType="i4"
+                      cachedName="Producto_Codigo"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_Codigo]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_Codigo]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].Columns[Producto_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="Producto_Nombre"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_Nombre]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_Nombre]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].Columns[Producto_PUnitario]"
+                      cachedDataType="numeric"
+                      cachedName="Producto_PUnitario"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_PUnitario]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_PUnitario]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].Columns[Producto_Categoria_SKey]"
+                      cachedDataType="i4"
+                      cachedName="Producto_Categoria_SKey"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_Categoria_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_Categoria_SKey]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].Columns[ProveedorNombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="ProveedorNombre"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[ProveedorNombre]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[ProveedorNombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_SKey]"
+                      dataType="i4"
+                      name="Producto_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_Codigo]"
+                      dataType="i4"
+                      name="Producto_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_Nombre]"
+                      dataType="wstr"
+                      length="80"
+                      name="Producto_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_PUnitario]"
+                      dataType="numeric"
+                      name="Producto_PUnitario"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_Categoria_SKey]"
+                      dataType="i4"
+                      name="Producto_Categoria_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[ProveedorNombre]"
+                      dataType="wstr"
+                      length="40"
+                      name="ProveedorNombre" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="AZURE_DIM_Tiempo"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Dim_Tiempo"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Connections[IDbConnection]"
+                  connectionManagerID="{5C5DE4DA-9CE8-4F9B-B0CC-472F984F1A76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[servidoresteban.database.windows.net.DATAMART_NORTHWND.esteban]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_Skey]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_Skey"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Skey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Skey]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_FechaActual]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Tiempo_FechaActual"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_FechaActual]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_FechaActual]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_Anio]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_Anio"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Anio]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Anio]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_Trimestre]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_Trimestre"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Trimestre]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Trimestre]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_Mes]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_Mes"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Mes]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Mes]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_Semana]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_Semana"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Semana]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Semana]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_DiaDeAnio]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_DiaDeAnio"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_DiaDeAnio]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiaDeAnio]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_DiaDeMes]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_DiaDeMes"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_DiaDeMes]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiaDeMes]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_DiaDeSemana]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_DiaDeSemana"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_DiaDeSemana]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiaDeSemana]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_EsFinSemana]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_EsFinSemana"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_EsFinSemana]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_EsFinSemana]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_EsFeriado]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_EsFeriado"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_EsFeriado]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_EsFeriado]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_SemanaCalendario]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_SemanaCalendario"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_SemanaCalendario]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_SemanaCalendario]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_SemanasDelAñoLaborales]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_SemanasDelAñoLaborales"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_SemanasDelAñoLaborales]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_SemanasDelAñoLaborales]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_AñoBisiesto]"
+                      cachedDataType="ui1"
+                      cachedName="Tiempo_AñoBisiesto"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_AñoBisiesto]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_AñoBisiesto]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Skey]"
+                      dataType="i4"
+                      name="Tiempo_Skey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_FechaActual]"
+                      dataType="dbTimeStamp"
+                      name="Tiempo_FechaActual" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Anio]"
+                      dataType="i4"
+                      name="Tiempo_Anio" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Trimestre]"
+                      dataType="i4"
+                      name="Tiempo_Trimestre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Mes]"
+                      dataType="i4"
+                      name="Tiempo_Mes" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Semana]"
+                      dataType="i4"
+                      name="Tiempo_Semana" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_DiaDeAnio]"
+                      dataType="i4"
+                      name="Tiempo_DiaDeAnio" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_DiaDeMes]"
+                      dataType="i4"
+                      name="Tiempo_DiaDeMes" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_DiaDeSemana]"
+                      dataType="i4"
+                      name="Tiempo_DiaDeSemana" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_EsFinSemana]"
+                      dataType="i4"
+                      name="Tiempo_EsFinSemana" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_EsFeriado]"
+                      dataType="i4"
+                      name="Tiempo_EsFeriado" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_SemanaCalendario]"
+                      dataType="i4"
+                      name="Tiempo_SemanaCalendario" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_SemanasDelAñoLaborales]"
+                      dataType="i4"
+                      name="Tiempo_SemanasDelAñoLaborales" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_AñoBisiesto]"
+                      dataType="ui1"
+                      name="Tiempo_AñoBisiesto" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="AZURE_FACT_Ventas"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Fact_Ventas"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Connections[IDbConnection]"
+                  connectionManagerID="{5C5DE4DA-9CE8-4F9B-B0CC-472F984F1A76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[servidoresteban.database.windows.net.DATAMART_NORTHWND.esteban]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].Columns[Cliente_SKey]"
+                      cachedDataType="i4"
+                      cachedName="Cliente_SKey"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Cliente_SKey]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].Columns[Empleado_SKey]"
+                      cachedDataType="i4"
+                      cachedName="Empleado_SKey"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Empleado_SKey]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].Columns[Producto_SKey]"
+                      cachedDataType="i4"
+                      cachedName="Producto_SKey"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Producto_SKey]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].Columns[Tiempo_Skey]"
+                      cachedDataType="i4"
+                      cachedName="Tiempo_Skey"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Skey]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Skey]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].Columns[Ventas_NOrden]"
+                      cachedDataType="i4"
+                      cachedName="Ventas_NOrden"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Ventas_NOrden]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_NOrden]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].Columns[Ventas_Monto]"
+                      cachedDataType="numeric"
+                      cachedName="Ventas_Monto"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Ventas_Monto]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_Monto]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].Columns[Ventas_Unidades]"
+                      cachedDataType="i4"
+                      cachedName="Ventas_Unidades"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Ventas_Unidades]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_Unidades]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].Columns[Ventas_PUnitario]"
+                      cachedDataType="numeric"
+                      cachedName="Ventas_PUnitario"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Ventas_PUnitario]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_PUnitario]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].Columns[Ventas_Descuento]"
+                      cachedDataType="numeric"
+                      cachedName="Ventas_Descuento"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Ventas_Descuento]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_Descuento]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cliente_SKey]"
+                      dataType="i4"
+                      name="Cliente_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Empleado_SKey]"
+                      dataType="i4"
+                      name="Empleado_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Producto_SKey]"
+                      dataType="i4"
+                      name="Producto_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Tiempo_Skey]"
+                      dataType="i4"
+                      name="Tiempo_Skey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Ventas_NOrden]"
+                      dataType="i4"
+                      name="Ventas_NOrden" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Ventas_Monto]"
+                      dataType="numeric"
+                      name="Ventas_Monto"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Ventas_Unidades]"
+                      dataType="i4"
+                      name="Ventas_Unidades" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Ventas_PUnitario]"
+                      dataType="numeric"
+                      name="Ventas_PUnitario"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET].ExternalColumns[Ventas_Descuento]"
+                      dataType="numeric"
+                      name="Ventas_Descuento"
+                      precision="15"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\DIM_Categoria"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="DIM_Categoria"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Dim_Categoria]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\DIM_Categoria.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].Columns[Categoria_SKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].ExternalColumns[Categoria_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].Columns[Categoria_SKey]"
+                      name="Categoria_SKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].Columns[Categoria_Codigo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].ExternalColumns[Categoria_Codigo]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].Columns[Categoria_Codigo]"
+                      name="Categoria_Codigo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].Columns[Categoria_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].ExternalColumns[Categoria_Nombre]"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].Columns[Categoria_Nombre]"
+                      name="Categoria_Nombre"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].ExternalColumns[Categoria_SKey]"
+                      dataType="i4"
+                      name="Categoria_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].ExternalColumns[Categoria_Codigo]"
+                      dataType="i4"
+                      name="Categoria_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB].ExternalColumns[Categoria_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Categoria_Nombre" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB].Columns[Categoria_SKey]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB].Columns[Categoria_SKey]"
+                      name="Categoria_SKey" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB].Columns[Categoria_Codigo]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB].Columns[Categoria_Codigo]"
+                      name="Categoria_Codigo" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB].Columns[Categoria_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB].Columns[Categoria_Nombre]"
+                      name="Categoria_Nombre" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\DIM_Cliente"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="DIM_Cliente"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Dim_Cliente]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\DIM_Cliente.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_SKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_SKey]"
+                      name="Cliente_SKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Codigo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Codigo]"
+                      length="5"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Codigo]"
+                      name="Cliente_Codigo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Nombre]"
+                      length="40"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Nombre]"
+                      name="Cliente_Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Compania]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Compania]"
+                      length="40"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Compania]"
+                      name="Cliente_Compania"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Direccion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Direccion]"
+                      length="60"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Direccion]"
+                      name="Cliente_Direccion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Ciudad]"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Ciudad]"
+                      name="Cliente_Ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Region]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Region]"
+                      length="25"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Region]"
+                      name="Cliente_Region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Pais]"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].Columns[Cliente_Pais]"
+                      name="Cliente_Pais"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_SKey]"
+                      dataType="i4"
+                      name="Cliente_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Codigo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Cliente_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="Cliente_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="Cliente_Compania" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Direccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Cliente_Direccion" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Cliente_Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Cliente_Region" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Cliente_Pais" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_SKey]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_SKey]"
+                      name="Cliente_SKey" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Codigo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Codigo]"
+                      name="Cliente_Codigo" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Nombre]"
+                      name="Cliente_Nombre" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Compania]"
+                      name="Cliente_Compania" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Direccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Direccion]"
+                      name="Cliente_Direccion" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Ciudad]"
+                      name="Cliente_Ciudad" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Region]"
+                      name="Cliente_Region" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_Pais]"
+                      name="Cliente_Pais" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\DIM_Empleado"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="DIM_Empleado"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Dim_Empleado]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\DIM_Empleado.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_SKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_SKey]"
+                      name="Empleado_SKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Codigo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_Codigo]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Codigo]"
+                      name="Empleado_Codigo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_NombreCompleto]"
+                      length="70"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_NombreCompleto]"
+                      name="Empleado_NombreCompleto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Direccion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_Direccion]"
+                      length="120"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Direccion]"
+                      name="Empleado_Direccion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_Ciudad]"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Ciudad]"
+                      name="Empleado_Ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Region]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_Region]"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Region]"
+                      name="Empleado_Region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_Pais]"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].Columns[Empleado_Pais]"
+                      name="Empleado_Pais"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_SKey]"
+                      dataType="i4"
+                      name="Empleado_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_Codigo]"
+                      dataType="i4"
+                      name="Empleado_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="70"
+                      name="Empleado_NombreCompleto" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_Direccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="120"
+                      name="Empleado_Direccion" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Empleado_Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_Region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Empleado_Region" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Empleado_Pais" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_SKey]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_SKey]"
+                      name="Empleado_SKey" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_Codigo]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_Codigo]"
+                      name="Empleado_Codigo" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="70"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_NombreCompleto]"
+                      name="Empleado_NombreCompleto" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_Direccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="120"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_Direccion]"
+                      name="Empleado_Direccion" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_Ciudad]"
+                      name="Empleado_Ciudad" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_Region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_Region]"
+                      name="Empleado_Region" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_Pais]"
+                      name="Empleado_Pais" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\DIM_Producto"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="DIM_Producto"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Dim_Producto]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\DIM_Producto.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_SKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_SKey]"
+                      name="Producto_SKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_Codigo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_Codigo]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_Codigo]"
+                      name="Producto_Codigo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_Nombre]"
+                      length="80"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_Nombre]"
+                      name="Producto_Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_PUnitario]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_PUnitario]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_PUnitario]"
+                      name="Producto_PUnitario"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_Categoria_SKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_Categoria_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[Producto_Categoria_SKey]"
+                      name="Producto_Categoria_SKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[ProveedorNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[ProveedorNombre]"
+                      length="40"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].Columns[ProveedorNombre]"
+                      name="ProveedorNombre"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_SKey]"
+                      dataType="i4"
+                      name="Producto_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_Codigo]"
+                      dataType="i4"
+                      name="Producto_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="Producto_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_PUnitario]"
+                      dataType="numeric"
+                      name="Producto_PUnitario"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_Categoria_SKey]"
+                      dataType="i4"
+                      name="Producto_Categoria_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB].ExternalColumns[ProveedorNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="ProveedorNombre" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[Producto_SKey]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[Producto_SKey]"
+                      name="Producto_SKey" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[Producto_Codigo]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[Producto_Codigo]"
+                      name="Producto_Codigo" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[Producto_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[Producto_Nombre]"
+                      name="Producto_Nombre" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[Producto_PUnitario]"
+                      dataType="numeric"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[Producto_PUnitario]"
+                      name="Producto_PUnitario"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[Producto_Categoria_SKey]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[Producto_Categoria_SKey]"
+                      name="Producto_Categoria_SKey" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[ProveedorNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[ProveedorNombre]"
+                      name="ProveedorNombre" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\DIM_Tiempo"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="DIM_Tiempo"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Dim_Tiempo]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\DIM_Tiempo.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Skey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Skey]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Skey]"
+                      name="Tiempo_Skey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_FechaActual]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_FechaActual]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_FechaActual]"
+                      name="Tiempo_FechaActual"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Anio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Anio]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Anio]"
+                      name="Tiempo_Anio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Trimestre]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Trimestre]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Trimestre]"
+                      name="Tiempo_Trimestre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Mes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Mes]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Mes]"
+                      name="Tiempo_Mes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Semana]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Semana]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Semana]"
+                      name="Tiempo_Semana"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiaDeAnio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_DiaDeAnio]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiaDeAnio]"
+                      name="Tiempo_DiaDeAnio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiaDeMes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_DiaDeMes]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiaDeMes]"
+                      name="Tiempo_DiaDeMes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiaDeSemana]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_DiaDeSemana]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiaDeSemana]"
+                      name="Tiempo_DiaDeSemana"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_EsFinSemana]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_EsFinSemana]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_EsFinSemana]"
+                      name="Tiempo_EsFinSemana"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_EsFeriado]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_EsFeriado]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_EsFeriado]"
+                      name="Tiempo_EsFeriado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_SemanaCalendario]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_SemanaCalendario]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_SemanaCalendario]"
+                      name="Tiempo_SemanaCalendario"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_SemanasDelAñoLaborales]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_SemanasDelAñoLaborales]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_SemanasDelAñoLaborales]"
+                      name="Tiempo_SemanasDelAñoLaborales"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_AñoBisiesto]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_AñoBisiesto]"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].Columns[Tiempo_AñoBisiesto]"
+                      name="Tiempo_AñoBisiesto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Skey]"
+                      dataType="i4"
+                      name="Tiempo_Skey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_FechaActual]"
+                      dataType="dbTimeStamp"
+                      name="Tiempo_FechaActual" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Anio]"
+                      dataType="i4"
+                      name="Tiempo_Anio" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Trimestre]"
+                      dataType="i4"
+                      name="Tiempo_Trimestre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Mes]"
+                      dataType="i4"
+                      name="Tiempo_Mes" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Semana]"
+                      dataType="i4"
+                      name="Tiempo_Semana" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_DiaDeAnio]"
+                      dataType="i4"
+                      name="Tiempo_DiaDeAnio" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_DiaDeMes]"
+                      dataType="i4"
+                      name="Tiempo_DiaDeMes" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_DiaDeSemana]"
+                      dataType="i4"
+                      name="Tiempo_DiaDeSemana" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_EsFinSemana]"
+                      dataType="i4"
+                      name="Tiempo_EsFinSemana" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_EsFeriado]"
+                      dataType="i4"
+                      name="Tiempo_EsFeriado" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_SemanaCalendario]"
+                      dataType="i4"
+                      name="Tiempo_SemanaCalendario" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_SemanasDelAñoLaborales]"
+                      dataType="i4"
+                      name="Tiempo_SemanasDelAñoLaborales" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_AñoBisiesto]"
+                      dataType="ui1"
+                      name="Tiempo_AñoBisiesto" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Skey]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Skey]"
+                      name="Tiempo_Skey" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_FechaActual]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_FechaActual]"
+                      name="Tiempo_FechaActual" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Anio]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Anio]"
+                      name="Tiempo_Anio" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Trimestre]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Trimestre]"
+                      name="Tiempo_Trimestre" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Mes]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Mes]"
+                      name="Tiempo_Mes" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Semana]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Semana]"
+                      name="Tiempo_Semana" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_DiaDeAnio]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_DiaDeAnio]"
+                      name="Tiempo_DiaDeAnio" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_DiaDeMes]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_DiaDeMes]"
+                      name="Tiempo_DiaDeMes" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_DiaDeSemana]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_DiaDeSemana]"
+                      name="Tiempo_DiaDeSemana" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_EsFinSemana]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_EsFinSemana]"
+                      name="Tiempo_EsFinSemana" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_EsFeriado]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_EsFeriado]"
+                      name="Tiempo_EsFeriado" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_SemanaCalendario]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_SemanaCalendario]"
+                      name="Tiempo_SemanaCalendario" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_SemanasDelAñoLaborales]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_SemanasDelAñoLaborales]"
+                      name="Tiempo_SemanasDelAñoLaborales" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_AñoBisiesto]"
+                      dataType="ui1"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_AñoBisiesto]"
+                      name="Tiempo_AñoBisiesto" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos\FACT_Ventas"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="FACT_Ventas"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Fact_Ventas]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos\FACT_Ventas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.DATAMART_NORTHWND 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Cliente_SKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Cliente_SKey]"
+                      name="Cliente_SKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Empleado_SKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Empleado_SKey]"
+                      name="Empleado_SKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Producto_SKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_SKey]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Producto_SKey]"
+                      name="Producto_SKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Skey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Skey]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Tiempo_Skey]"
+                      name="Tiempo_Skey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_NOrden]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Ventas_NOrden]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_NOrden]"
+                      name="Ventas_NOrden"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_Monto]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Ventas_Monto]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_Monto]"
+                      name="Ventas_Monto"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_Unidades]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Ventas_Unidades]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_Unidades]"
+                      name="Ventas_Unidades"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_PUnitario]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Ventas_PUnitario]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_PUnitario]"
+                      name="Ventas_PUnitario"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_Descuento]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Ventas_Descuento]"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].Columns[Ventas_Descuento]"
+                      name="Ventas_Descuento"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Cliente_SKey]"
+                      dataType="i4"
+                      name="Cliente_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Empleado_SKey]"
+                      dataType="i4"
+                      name="Empleado_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Producto_SKey]"
+                      dataType="i4"
+                      name="Producto_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_Skey]"
+                      dataType="i4"
+                      name="Tiempo_Skey" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Ventas_NOrden]"
+                      dataType="i4"
+                      name="Ventas_NOrden" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Ventas_Monto]"
+                      dataType="numeric"
+                      name="Ventas_Monto"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Ventas_Unidades]"
+                      dataType="i4"
+                      name="Ventas_Unidades" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Ventas_PUnitario]"
+                      dataType="numeric"
+                      name="Ventas_PUnitario"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB].ExternalColumns[Ventas_Descuento]"
+                      dataType="numeric"
+                      name="Ventas_Descuento"
+                      precision="15"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_SKey]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Cliente_SKey]"
+                      name="Cliente_SKey" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_SKey]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Empleado_SKey]"
+                      name="Empleado_SKey" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Producto_SKey]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Producto_SKey]"
+                      name="Producto_SKey" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Skey]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_Skey]"
+                      name="Tiempo_Skey" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Ventas_NOrden]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Ventas_NOrden]"
+                      name="Ventas_NOrden" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Ventas_Monto]"
+                      dataType="numeric"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Ventas_Monto]"
+                      name="Ventas_Monto"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Ventas_Unidades]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Ventas_Unidades]"
+                      name="Ventas_Unidades" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Ventas_PUnitario]"
+                      dataType="numeric"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Ventas_PUnitario]"
+                      name="Ventas_PUnitario"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Ventas_Descuento]"
+                      dataType="numeric"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[Ventas_Descuento]"
+                      name="Ventas_Descuento"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB]"
+              endId="Package\Tarea Flujo de datos\AZURE_DIM_Cliente.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Tarea Flujo de datos\DIM_Cliente.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB1]"
+              endId="Package\Tarea Flujo de datos\AZURE_DIM_Producto.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Tarea Flujo de datos\DIM_Producto.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB2]"
+              endId="Package\Tarea Flujo de datos\AZURE_DIM_Categoria.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Tarea Flujo de datos\DIM_Categoria.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB3]"
+              endId="Package\Tarea Flujo de datos\AZURE_DIM_Empleado.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Tarea Flujo de datos\DIM_Empleado.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB4]"
+              endId="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Tarea Flujo de datos\DIM_Tiempo.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB5]"
+              endId="Package\Tarea Flujo de datos\AZURE_FACT_Ventas.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Tarea Flujo de datos\FACT_Ventas.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Tarea Flujo de datos"
+          TopLeft="347.5,82.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarea Flujo de datos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Tarea Flujo de datos\DIM_Cliente"
+          TopLeft="46,41" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Tarea Flujo de datos\AZURE_DIM_Cliente"
+          TopLeft="25,224" />
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB]"
+          TopLeft="116.25,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,141"
+              Start="0,0"
+              End="0,133.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,133.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Tarea Flujo de datos\DIM_Producto"
+          TopLeft="227,41" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Tarea Flujo de datos\DIM_Categoria"
+          TopLeft="407,49" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Tarea Flujo de datos\DIM_Empleado"
+          TopLeft="581,50" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Tarea Flujo de datos\DIM_Tiempo"
+          TopLeft="763,51" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Tarea Flujo de datos\FACT_Ventas"
+          TopLeft="932,50" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo"
+          TopLeft="741,228" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Tarea Flujo de datos\AZURE_DIM_Categoria"
+          TopLeft="386,219" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Tarea Flujo de datos\AZURE_DIM_Empleado"
+          TopLeft="563,297" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Tarea Flujo de datos\AZURE_FACT_Ventas"
+          TopLeft="915,299" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Tarea Flujo de datos\AZURE_DIM_Producto"
+          TopLeft="201,282" />
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB1]"
+          TopLeft="299.5,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,199"
+              Start="0,0"
+              End="0,191.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,191.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB2]"
+          TopLeft="483.75,91">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,128"
+              Start="0,0"
+              End="0,120.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,120.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB3]"
+          TopLeft="660.25,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,205"
+              Start="0,0"
+              End="0,197.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,197.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB4]"
+          TopLeft="833.75,93">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,135"
+              Start="0,0"
+              End="0,127.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,127.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos.Paths[Salida de origen de OLE DB5]"
+          TopLeft="1008.25,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,207"
+              Start="0,0"
+              End="0,199.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,199.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\DIM_Cliente">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\AZURE_DIM_Cliente">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\DIM_Producto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\DIM_Categoria">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\DIM_Empleado">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\DIM_Tiempo">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\FACT_Ventas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\AZURE_DIM_Tiempo">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\AZURE_DIM_Categoria">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\AZURE_DIM_Empleado">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\AZURE_FACT_Ventas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos\AZURE_DIM_Producto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

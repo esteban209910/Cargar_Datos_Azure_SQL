@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="servidoresteban.database.windows.net.DATAMART_NORTHWND.esteban"
+  DTS:DTSID="{5C5DE4DA-9CE8-4F9B-B0CC-472F984F1A76}"
+  DTS:CreationName="ADO.NET:Microsoft.Data.SqlClient.SqlConnection, Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=servidoresteban.database.windows.net;User ID=esteban;Initial Catalog=DATAMART_NORTHWND;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAcVgQ1yYTQU2qM+FIhfqpawAAAAACAAAAAAAQZgAAAAEAACAAAACNkVrDs3bd5ubn43uN42xgtwbC2lgm/2wrfgJd8z3dIwAAAAAOgAAAAAIAACAAAADh0lzuTqvNLbh0AAFjAhDLe130rFznecAKTO7D8cvDS4AAAACRS++Ubk5o8tAE5NnialbSqu+Ir15I4rDtTuG3pi0xZfK1bZKT4JKuRR0gXkpOwMmBLqH8jXffCqjtuwfypuP/52y36ix2dJc1nssEDLw2FiJLZOaYifCiaRemZOgTybuEOxBfVd4Xlj5E2LtyGo+KuvyaQC71WZO9Um7Crds3eEAAAAAbhvodYocRlJmymgTDEuk7ujry8IG0V5PDpv+VXSSCuzwLMihBW7hRctsDl36xJe+9DceDVvJFYEoLwlJt+0I4</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

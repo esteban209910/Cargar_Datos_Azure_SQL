@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="LocalHost.DATAMART_NORTHWND"
+  DTS:DTSID="{75578F3D-0FB6-4141-8E53-7A15B49A05E9}"
+  DTS:CreationName="ADO">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=.;Initial Catalog=DATAMART_NORTHWND;Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Application Name=SSIS-Cargar_Datos_Azure_SQL-{75578F3D-0FB6-4141-8E53-7A15B49A05E9}LocalHost.DATAMART_NORTHWND;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
